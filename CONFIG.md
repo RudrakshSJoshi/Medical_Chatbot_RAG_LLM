@@ -1,6 +1,6 @@
 
 
-1. First download folder `chroma` from this [link]().
+1. First download folder `chroma` from this [link](https://drive.google.com/file/d/11Jp8miWxfwUDTQq2WVujsKyGHmZi_0RV/view?usp=sharing).
 2. Then clone the repo:
 ```bash
 git clone <repo_url>
