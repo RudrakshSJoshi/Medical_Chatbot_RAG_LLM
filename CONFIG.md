@@ -1,6 +1,5 @@
 
 
-```markdown
 1. First download folder `chroma` from this [link]().
 2. Then clone the repo:
 ```bash
@@ -15,7 +14,7 @@ python -m venv < env_name >
 5. Activate it:
 - On Windows:
 ```bash
- <env_name >\Scripts\activate
+ < env_name >\Scripts\activate
 ```
 - On macOS/Linux:
 ```bash
@@ -42,4 +41,3 @@ pip install -r requirements.txt
 - In case the number of documents exceeds 5000, add the files to your database in batches.
 
 To add more to the current model, just add whatever files you want once you remove the current PDF files in the `data` folder into the `data` folder and run `db_update.py`.
-```  
