@@ -1,6 +1,6 @@
 ## Steps to Setup Repository Locally
 
-1. First download folder `chroma` from this [link](https://drive.google.com/file/d/11Jp8miWxfwUDTQq2WVujsKyGHmZi_0RV/view?usp=sharing).
+1. First download folder `chroma` from this [link](https://drive.google.com/file/d/1qehnf8V7SsARDanK-SIf2bAdUUMIwJh6/view?usp=sharing).
 2. Then clone the repo:
 ```bash
 git clone <repo_url>
