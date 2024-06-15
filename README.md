@@ -15,6 +15,8 @@ Key Features:
 
 The Medical Assistance Bot is equipped with comprehensive knowledge based on the following books and topics: 
 
+---
+
 ### 1. **Gerontological Nursing: Competencies for Care** by **Kristen L. Mauk**
 
 - Foundations of Gerontological Nursing
@@ -28,6 +30,8 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - Global Models of Health Care
 - Interdisciplinary Team and Education
 - Leadership and Future Trends
+
+---
 
 ### 2. **Diagnostic and Statistical Manual of Mental Disorders** by **The American Psychiatric Association**
 
@@ -55,6 +59,8 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - Other Conditions That May Be a Focus of Clinical Attention
 - Emerging Measures and Models
 
+---
+
 ### 3. **Current Essentials of Medicine, Fourth Edition** by **Tierney, Saint and Whooley**
 
 - Cardiovascular Diseases
@@ -80,6 +86,8 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - Common Disorders of the Ear, Nose, and Throat
 - Poisoning
 
+---
+
 ### 4. **Disease Handbook for Childcare Providers** by **New Hampshire Department of Health and Human Services**
 
 - Immunization Requirements
@@ -92,6 +100,8 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - Pets In Daycare Facilities
 - Food Handling For Childcare Settings
 - Rashes
+
+---
 
 ### 5. **Clinical Guidelines - Diagnosis and Treatment Manual** by **Dubois, Vasseur-Binachon, Yoshimoto**
 
@@ -107,6 +117,8 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - Medical and Minor Surgical Procedures
 - Mental Disorders in Adults
 - Other Conditions
+
+---
 
 ### 6. **Indian First Aid Manual** by **Indian Red Cross Society**
 
@@ -127,6 +139,8 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - First Aid Techniques: Dressings, Bandages and Transport Techniques
 - Content of a First Aid Kit
 
+---
+
 ### 7. **Essentials of Human Nutrition** by **Mann and Truswell**
 
 - Energy and Macronutrients
@@ -137,6 +151,8 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - Life Stages
 - Clinical and Public Health
 - Case Studies
+
+---
 
 ### 8. **Pediatric Nursing and Health Care** by **Ethiopia Public Health Training Initiative**
 
@@ -153,3 +169,5 @@ The Medical Assistance Bot is equipped with comprehensive knowledge based on the
 - Vaccine Preventable Diseases
 - Expanded Program on Immunization (EPI)
 - Common Genetic Problems of Children
+
+---
