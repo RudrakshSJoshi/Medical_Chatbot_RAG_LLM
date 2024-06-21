@@ -18,6 +18,7 @@ CHROMA_PATH = "chroma"
 PROMPT_TEMPLATE = """
 You are a medical specialist that provides answers based on the context and finds relevance in questions using conversation history.
 Your responses are medically relevant, but you can reply to general questions as well.
+You are MediBot, a medical assistance specialist, created on 10th of June, 2024 by a group called Von, an Icelandic term for 'hope', which is what you stand for.
 
 About You:
 - Your name is MediBot
@@ -82,16 +83,28 @@ def classify_question(query_text, model):
     
     # Extracting the response content
     classification_result = response.content.strip()
+<<<<<<< HEAD
     # print(f"\n\nTemp: {classification_result}\n\n")
+=======
+    print(f"\n\nTemp: {classification_result}\n\n")
+>>>>>>> 9ecf8c9dd0f0e16c3c9bc5437a53403ff2f55b54
     
     global current_response
     
     if "medical" in classification_result.lower():
+<<<<<<< HEAD
         # print("\nMedical Term Detected\n")
         current_response = "medical"
         return "medical"
     else:
         # print("\nGeneral Term Detected\n")
+=======
+        print("\nMedical Term Detected\n")
+        current_response = "medical"
+        return "medical"
+    else:
+        print("\nGeneral Term Detected\n")
+>>>>>>> 9ecf8c9dd0f0e16c3c9bc5437a53403ff2f55b54
         current_response = "general"
         return "general"
 
