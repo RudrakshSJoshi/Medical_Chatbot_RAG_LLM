@@ -16,8 +16,9 @@ MODEL = "mixtral-8x7b-32768"
 CHROMA_PATH = "chroma"
 
 PROMPT_TEMPLATE = """
-You are a medical chatbot that provides answers based on the context and finds relevance in questions using conversation history.
+You are a medical specialist that provides answers based on the context and finds relevance in questions using conversation history.
 Your responses are medically relevant, but you can reply to general questions as well.
+You are MediBot, a medical assistance specialist, created on 10th of June, 2024 by a group called Von, an Icelandic term for 'hope', which is what you stand for.
 
 Conversation History:
 {history}
@@ -36,11 +37,13 @@ Expected Response Type:
 
 ---
 IMPORTANT POINTS:
-- If expected response type is related to general conversation, then you just refer to General Conversation History to answer the questions
-- If expected reponse type is medically relevant, then you refer to medical conversation history to reform the question asked to add missing details in the question, then pass it on to find contexts, and create an accurate response
-- Your answers are supposed to be correct, precise, and should not contain any unnecessary information
+- You should always refer to conversation history, no matter what expected reponse type is.
+- If expected response type is related to general conversation, then you just refer to General Conversation History to answer the questions.
+- If expected reponse type is medically relevant, then you should refer to context and medical conversation history, and answer according to question while also maintaining relevance with the rephrased question.
+- Your answers are supposed to be correct, precise, and should not contain any unnecessary information.
 - If you do not know about a topic, or if the response is not close to the question asked, then respond by saying that you did not understand the question or that information was missing.
 - Answer according to the question asked, but check rephrased question for better answer formulation.
+- Your responses should look like you are talking to someone implying it shouldn't contain notes, terms like 'reponse', 'context', 'conversation history', etc.
 
 Question asked:
 - {question}
@@ -55,17 +58,35 @@ general_conversation_history = []
 current_reponse = ""
 
 def classify_question(query_text, model):
+    last_convo =""
+    if conversation_history:
+        last_convo = " ".join([conversation_history[-1], conversation_history[-2]])
+    else:
+        last_convo = "the conversation just started"
     # Use your ChatGroq model to classify whether the question is medical or general
-    response = model.invoke(f"Just repond with 'medical' if input is medically relevant and respond with 'general' if input is a general conversation question:{query_text}")
-    # Assuming the model provides a classification result
-    classification_result = response  # You need to define how your model outputs the classification
-    global current_reponse
+    response = model.invoke(f"""
+                            Determine whether to respond with 'general' or 'medical' based on the following:
+                            - the current conversation text: {query_text}.
+                            - the last relevant connversation: {last_convo}.
+                            'medical' means the text talks about anything related to medical field, disease, treatment, symptom, health, and such.
+                            'general' means the text is not medically relevant, and can be answered independently without context.
+                            Your answer should be dependent on both conversations because current conversation may be dependent on previous conversation.
+                            Your reply should be a single word.
+                            """)
     
-    if classification_result == "medical":
-        current_reponse="medical"
+    # Extracting the response content
+    classification_result = response.content.strip()
+    print(f"\n\nTemp: {classification_result}\n\n")
+    
+    global current_response
+    
+    if "medical" in classification_result.lower():
+        print("\nMedical Term Detected\n")
+        current_response = "medical"
         return "medical"
     else:
-        current_reponse="general"
+        print("\nGeneral Term Detected\n")
+        current_response = "general"
         return "general"
 
 def main():
@@ -97,13 +118,17 @@ def query_rag(query_text: str, category: str, model):
     
     # Rephrase the query if it is medically relevant
     if category == "medical":
-        # Example of rephrasing: prepend information from medical conversation history
-        rephrased_query = " ".join([f"previous medical conversation text here", query_text])
+        if medical_conversation_history:
+            last_medical_convo = " ".join([medical_conversation_history[-1], medical_conversation_history[-2]])
+            rephrased_query = f"Previous medical conversation text and reply here: {last_medical_convo}; Current question: {query_text}"
+        else:
+            rephrased_query = query_text
+        print(f"\n\nRephrasing: {rephrased_query}\n\n")
     else:
         rephrased_query = query_text
     
     # Search the DB with the rephrased query
-    results = db.similarity_search_with_score(rephrased_query, k=3)
+    results = db.similarity_search_with_score(rephrased_query, k=4)
 
     # Construct the context text
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
@@ -144,6 +169,7 @@ def query_rag(query_text: str, category: str, model):
     formatted_sources = "\n".join([f"- {source}" for source in sources])
 
     # Format the final response
+    # formatted_response = f"Response:\n{response_text}\n\nSources:\n{formatted_sources}"
     formatted_response = f"{response_text}"
     
     print(formatted_response)
