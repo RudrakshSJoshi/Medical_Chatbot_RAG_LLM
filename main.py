@@ -71,40 +71,26 @@ def classify_question(query_text, model):
     else:
         last_convo = "the conversation just started"
     # Use your ChatGroq model to classify whether the question is medical or general
-    response = model.invoke(f"""
-                            Determine whether to respond with 'general' or 'medical' based on the following:
-                            - the current conversation text: {query_text}.
-                            - the last relevant connversation: {last_convo}.
-                            'medical' means the text talks about anything related to medical field, disease, treatment, symptom, health, and such.
-                            'general' means the text is not medically relevant, and can be answered independently without context.
-                            Your answer should be dependent on both conversations because current conversation may be dependent on previous conversation.
-                            Your reply should be a single word.
-                            """)
+    response = model.invoke(f"""Determine whether to respond with 'general' or 'medical' based on the following:
+- the current conversation text: {query_text}.
+- the last relevant connversation: {last_convo}.
+'medical' means the text talks about anything related to medical field, disease, treatment, symptom, health, and such.
+'general' means the text is not medically relevant, and can be answered independently without context.
+Your answer should be dependent on both conversations because current conversation may be dependent on previous conversation.
+Your reply should be a single word.""")
     
     # Extracting the response content
     classification_result = response.content.strip()
-<<<<<<< HEAD
-    # print(f"\n\nTemp: {classification_result}\n\n")
-=======
     print(f"\n\nTemp: {classification_result}\n\n")
->>>>>>> 9ecf8c9dd0f0e16c3c9bc5437a53403ff2f55b54
     
     global current_response
     
     if "medical" in classification_result.lower():
-<<<<<<< HEAD
-        # print("\nMedical Term Detected\n")
-        current_response = "medical"
-        return "medical"
-    else:
-        # print("\nGeneral Term Detected\n")
-=======
         print("\nMedical Term Detected\n")
         current_response = "medical"
         return "medical"
     else:
         print("\nGeneral Term Detected\n")
->>>>>>> 9ecf8c9dd0f0e16c3c9bc5437a53403ff2f55b54
         current_response = "general"
         return "general"
 
