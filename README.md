@@ -6,28 +6,46 @@ This repository contains the implementation of a state-of-the-art **Medical Assi
 For configuring the repository locally and environment, refer to [CONFIG.md](CONFIG.md).
 To see a test case, refer to [SAMPLE_OUTPUT.md](SAMPLE_OUTPUT.md).
 
-## NEW UPDATE
-**Vector Database Setup**
+## NEW UPDATES
+- **Context Classifier Chatbot**
+  - **Introduction**
+    - The Context Classifier Chatbot is a sophisticated chatbot designed to streamline the process of understanding and categorizing user queries. This update introduces a context stripping and identifier mechanism, significantly enhancing the chatbot's efficiency and cost-effectiveness.
 
-There are now two different databases to integrate with chatbots, using
-1. ChromaDB
-2. FAISS (Facebook AI Similarity Search)
+  - **Key Features**
+    - Context Stripping and Identifier
+      - **Pre-segregation Layer**: The chatbot utilizes a pre-segregation layer to categorize the meaning behind user questions into specific categories. Currently, it distinguishes between nutrition and health-related queries and general queries.
+      - **Selective Context Retrieval**: The chatbot retrieves context only when the query is categorized as non-general (e.g., nutrition and health-related). This reduces the need for extensive context searches for general queries, optimizing performance.
 
-- **Chroma Database Setup**
-  - 384 dimensions (with `sentence-transformers/all-MiniLM-L6-v2`)
-  - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5`)
-  - 4096 dimensions (with `Cohere Embeddings`)
+    - **Benefits**
+      - **Reduced Input Costs**: By categorizing queries and selectively retrieving context, the input costs are minimized. The input size remains almost constant for segregation purposes, and context retrieval is bypassed for general queries.
+      - **Time Efficiency**: With a likelihood of general queries being between 20-80%, the chatbot saves time by avoiding unnecessary similarity searches and large context additions.
+      - **Cost Savings**: The reduction in input prompt size and selective context retrieval contribute to overall cost savings.
 
-- **FAISS Vector Database Setup**
-  - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5` embedding functions)
-  - FAISS setup includes:
-    - `.faiss` and `metadata.json` files for medical and nutrition databases in two separate folders.
+    - **How It Works**
+      - **User Query Segregation**: When a user submits a query, the chatbot first processes it through a pre-segregation layer.
+      - **Category Identification**: The pre-segregation layer identifies whether the query is general or related to nutrition and health.
+      - **Context Retrieval**: If the query is categorized as general, the chatbot responds without additional context retrieval. If it is related to nutrition and health, the necessary context is retrieved to provide a comprehensive response.
 
-- **Common Files**
-  - A common `context_retrieve.py` file is present in the `vector_database_setup` folder, which provides instructions on retrieving data and contexts from the FAISS vector database, with open prompts to allow **Chain-Of-Thought** processing.
+- **Vector Database Setup**
+  There are now two different databases to integrate with chatbots, using
+  1. ChromaDB
+  2. FAISS (Facebook AI Similarity Search)
+
+  - **Chroma Database Setup**
+    - 384 dimensions (with `sentence-transformers/all-MiniLM-L6-v2`)
+    - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5`)
+    - 4096 dimensions (with `Cohere Embeddings`)
+
+  - **FAISS Vector Database Setup**
+    - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5` embedding functions)
+    - FAISS setup includes:
+      - `.faiss` and `metadata.json` files for medical and nutrition databases in two separate folders.
+
+  - **Common Files**
+    - A common `context_retrieve.py` file is present in the `vector_database_setup` folder, which provides instructions on retrieving data and contexts from the FAISS vector database, with open prompts to allow **Chain-Of-Thought** processing.
 
 **Important Note:**
-- FAISS 
+- FAISS vector database requires a pointer to files, the metadata provides the chunk location -> (name_of_file, page_no., chunk_id), and it should be fetched manually.
 
 Key Features:
 - Utilizes **RAG architecture** to combine retrieval of relevant documents with generative capabilities.
