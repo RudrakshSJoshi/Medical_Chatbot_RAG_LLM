@@ -12,7 +12,7 @@ To see a test case, refer to [SAMPLE_OUTPUT.md](SAMPLE_OUTPUT.md).
     - The Context Classifier Chatbot is a sophisticated chatbot designed to streamline the process of understanding and categorizing user queries. This update introduces a context stripping and identifier mechanism, significantly enhancing the chatbot's efficiency and cost-effectiveness.
 
   - **Key Features**
-    - Context Stripping and Identifier
+    - **Context Stripping and Identifier**
       - **Pre-segregation Layer**: The chatbot utilizes a pre-segregation layer to categorize the meaning behind user questions into specific categories. Currently, it distinguishes between nutrition and health-related queries and general queries.
       - **Selective Context Retrieval**: The chatbot retrieves context only when the query is categorized as non-general (e.g., nutrition and health-related). This reduces the need for extensive context searches for general queries, optimizing performance.
 
