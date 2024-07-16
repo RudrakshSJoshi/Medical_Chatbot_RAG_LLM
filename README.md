@@ -27,22 +27,22 @@ To see a test case, refer to [SAMPLE_OUTPUT.md](SAMPLE_OUTPUT.md).
       - **Context Retrieval**: If the query is categorized as general, the chatbot responds without additional context retrieval. If it is related to nutrition and health, the necessary context is retrieved to provide a comprehensive response.
 
 - **Vector Database Setup**
-  There are now two different databases to integrate with chatbots, using
-  1. ChromaDB
-  2. FAISS (Facebook AI Similarity Search)
+  - There are now two different databases to integrate with chatbots, using
+    1. ChromaDB
+    2. FAISS (Facebook AI Similarity Search)
 
-  - **Chroma Database Setup**
-    - 384 dimensions (with `sentence-transformers/all-MiniLM-L6-v2`)
-    - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5`)
-    - 4096 dimensions (with `Cohere Embeddings`)
+    - **Chroma Database Setup**
+      - 384 dimensions (with `sentence-transformers/all-MiniLM-L6-v2`)
+      - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5`)
+      - 4096 dimensions (with `Cohere Embeddings`)
 
-  - **FAISS Vector Database Setup**
-    - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5` embedding functions)
-    - FAISS setup includes:
-      - `.faiss` and `metadata.json` files for medical and nutrition databases in two separate folders.
+    - **FAISS Vector Database Setup**
+      - 1024 dimensions (with `Alibaba-NLP/gte-large-en-v1.5` embedding functions)
+      - FAISS setup includes:
+        - `.faiss` and `metadata.json` files for medical and nutrition databases in two separate folders.
 
-  - **Common Files**
-    - A common `context_retrieve.py` file is present in the `vector_database_setup` folder, which provides instructions on retrieving data and contexts from the FAISS vector database, with open prompts to allow **Chain-Of-Thought** processing.
+    - **Common Files**
+      - A common `context_retrieve.py` file is present in the `vector_database_setup` folder, which provides instructions on retrieving data and contexts from the FAISS vector database, with open prompts to allow **Chain-Of-Thought** processing.
 
 **Important Note:**
 - FAISS vector database requires a pointer to files, the metadata provides the chunk location -> (name_of_file, page_no., chunk_id), and it should be fetched manually.
